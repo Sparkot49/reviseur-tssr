@@ -2255,7 +2255,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
           <div class="sources"><span>Des mini-machines simulées dans ton navigateur, tirées de TES TP (ateliers AD/DHCP, scripts Bash, tes comptes-rendus pfSense, Packet Tracer…). Tu tapes les vraies commandes, le terminal répond comme en vrai. C'est exactement le format de l'épreuve pratique : une consigne → la bonne commande sur la bonne machine.</span></div>
         </div>
         <div class="box clair"><div class="bt">💡 Comment ça marche</div>
-          <p>Choisis un lab, lis la <strong>mission</strong> en haut, et tape la commande dans le terminal. Si tu sèches : clique <strong>💡 Indice</strong> (ou tape <code>indice</code>), puis <strong>👀 Solution</strong> — mais recopie-la à la main, c'est le geste qui ancre la mémoire. Ta progression est sauvegardée.</p></div>
+          <p>Choisis un lab, lis la <strong>mission</strong> en haut, et tape la commande dans le terminal. Si tu sèches : clique <strong>💡 Indice</strong> (ou tape <code>indice</code>), puis <strong>👀 Solution</strong> — mais recopie-la à la main, c'est le geste qui ancre la mémoire. Ta progression est sauvegardée. Sur les machines <strong>PowerShell</strong>, appuie sur <strong>Tab</strong> pour compléter une cmdlet et cycler sur ses <code>-paramètres</code> (Maj+Tab pour revenir), comme dans la vraie console.</p></div>
         <div class="labgrid" id="labgrid"></div>
       </div>
       <div id="labview">
@@ -2508,6 +2508,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
     $('labout').innerHTML='';
     tprint(cur.context,'dim'); tprint('');
     showStep();
+    var pin=$('labin'); if(pin){pin.placeholder = m.cls==='win' ? 'commande PowerShell — appuie sur Tab pour compléter les -paramètres…' : (m.cls==='net'?'commande IOS puis Entrée…':(m.cls==='pf'?'saisie puis Entrée…':'commande puis Entrée…'));}
     setTimeout(function(){var inp=$('labin'); if(inp)inp.focus()},60);
   }
   function closeLab(){
@@ -2563,8 +2564,59 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
     if(id==='labhintbtn'){hint(false);return}
     if(id==='labsolbtn'){hint(true);return}
   });
+  var tabS=null;
+  var CMDLETS=['Get-NetIPAddress','Get-ADDomain','New-ADOrganizationalUnit','New-ADUser','New-ADGroup','Add-ADGroupMember','Get-ADUser','Get-ADGroupMember','Set-ADUser','Install-WindowsFeature','Add-DhcpServerInDC','Add-DhcpServerv4Scope','Set-DhcpServerv4OptionValue','Add-DhcpServerv4Reservation','Get-DhcpServerv4Scope','Get-DhcpServerv4Lease','Restart-Service','Get-Service','ConvertTo-SecureString','Get-Command','Get-Help'];
+  var PSP={
+    'new-adorganizationalunit':['-Name','-Path','-Description','-DisplayName','-ProtectedFromAccidentalDeletion','-ManagedBy','-City','-State','-Country','-Server','-Credential','-PassThru'],
+    'new-aduser':['-Name','-SamAccountName','-AccountPassword','-Enabled','-Path','-GivenName','-Surname','-DisplayName','-UserPrincipalName','-Description','-ChangePasswordAtLogon','-PasswordNeverExpires','-Department','-Title','-Server','-Credential','-PassThru'],
+    'new-adgroup':['-Name','-GroupScope','-GroupCategory','-Path','-Description','-DisplayName','-SamAccountName','-Server','-Credential','-PassThru'],
+    'add-adgroupmember':['-Identity','-Members','-Server','-Credential','-PassThru','-Partition'],
+    'get-aduser':['-Identity','-Filter','-LDAPFilter','-SearchBase','-SearchScope','-Properties','-ResultSetSize','-Server','-Credential'],
+    'get-adgroupmember':['-Identity','-Recursive','-Partition','-Server','-Credential'],
+    'set-aduser':['-Identity','-Enabled','-ChangePasswordAtLogon','-AccountPassword','-Replace','-Add','-Remove','-Clear','-Server','-Credential','-PassThru'],
+    'get-netipaddress':['-AddressFamily','-InterfaceAlias','-InterfaceIndex','-IPAddress','-PrefixLength','-Type','-PrefixOrigin','-SuffixOrigin','-AddressState'],
+    'install-windowsfeature':['-Name','-IncludeManagementTools','-IncludeAllSubFeature','-Restart','-Source','-ComputerName','-Credential','-LogPath','-ConfigurationFilePath'],
+    'add-dhcpserverindc':['-DnsName','-IPAddress','-CimSession','-PassThru'],
+    'add-dhcpserverv4scope':['-Name','-StartRange','-EndRange','-SubnetMask','-State','-Description','-LeaseDuration','-SuperscopeName','-Type','-ComputerName','-CimSession','-PassThru'],
+    'set-dhcpserverv4optionvalue':['-ScopeId','-OptionId','-Value','-Router','-DnsServer','-DnsDomain','-ReservedIP','-VendorClass','-UserClass','-Force','-ComputerName','-CimSession','-PassThru'],
+    'add-dhcpserverv4reservation':['-ScopeId','-IPAddress','-ClientId','-Name','-Description','-Type','-ComputerName','-CimSession','-PassThru'],
+    'restart-service':['-Name','-DisplayName','-InputObject','-Force','-PassThru','-Include','-Exclude'],
+    'get-dhcpserverv4scope':['-ScopeId','-ComputerName','-CimSession'],
+    'get-dhcpserverv4lease':['-ScopeId','-IPAddress','-ClientId','-AllLeases','-ComputerName','-CimSession'],
+    'get-service':['-Name','-DisplayName','-Include','-Exclude','-InputObject','-ComputerName','-DependentServices','-RequiredServices'],
+    'convertto-securestring':['-String','-AsPlainText','-Force','-SecureKey','-Key'],
+    '_common':['-Verbose','-Debug','-ErrorAction','-WarningAction','-OutVariable','-WhatIf','-Confirm']
+  };
+  var BASHC=['useradd','passwd','id','groupadd','usermod','mkdir','chown','chmod','ls','cat','systemctl','journalctl','curl','ss','netstat','apt','apt-get','dpkg','ssh','ssh-keygen','ssh-copy-id','scp','grep','ip','sudo','dhcpd','named-checkconf','named-checkzone','kill','ps','top','df','du','nano','vi'];
+  function uniq(a){var s={},o=[];a.forEach(function(x){var k=x.toLowerCase();if(!s[k]){s[k]=1;o.push(x);}});return o;}
+  function doTab(shift){
+    var inp=$('labin'); if(!inp||!cur) return;
+    var m=machine();
+    if(tabS){ tabS.idx=(tabS.idx+(shift?-1:1)+tabS.cands.length)%tabS.cands.length; inp.value=tabS.base+tabS.cands[tabS.idx]; return; }
+    var v=inp.value; var parts=v.split(/ +/); var last=parts[parts.length-1]; var first=parts[0]||'';
+    var cands=null, base='';
+    if(m.cls==='win'){
+      if(parts.length===1 && last && last.charAt(0)!=='-'){
+        cands=CMDLETS.filter(function(c){return c.toLowerCase().indexOf(last.toLowerCase())===0;});
+      } else if(last==='' || last.charAt(0)==='-'){
+        var pm=uniq((PSP[first.toLowerCase()]||[]).concat(PSP._common));
+        cands=pm.filter(function(p){return p.toLowerCase().indexOf(last.toLowerCase())===0;});
+        base=parts.slice(0,parts.length-1).join(' '); if(base) base+=' ';
+      }
+    } else if(m.cls==='deb'){
+      if(parts.length===1 && last){
+        cands=BASHC.filter(function(c){return c.indexOf(last)===0;});
+      } else if(parts.length===2 && first==='sudo' && last && last.charAt(0)!=='-'){
+        cands=BASHC.filter(function(c){return c.indexOf(last)===0;}); base='sudo ';
+      }
+    }
+    if(cands && cands.length){ tabS={base:base,cands:cands,idx:shift?cands.length-1:0}; inp.value=tabS.base+tabS.cands[tabS.idx]; }
+  }
   document.addEventListener('keydown',function(e){
-    if(e.key==='Enter' && document.activeElement && document.activeElement.id==='labin'){submit()}
+    var onIn = document.activeElement && document.activeElement.id==='labin';
+    if(e.key==='Tab' && onIn){ e.preventDefault(); doTab(e.shiftKey); return; }
+    if(e.key!=='Tab') tabS=null;
+    if(e.key==='Enter' && onIn){ submit(); }
   });
   document.addEventListener('click',function(e){
     if(e.target.closest && e.target.closest('#labterm')){var i=$('labin'); if(i)i.focus()}
