@@ -383,6 +383,67 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
   @page{margin:9mm}
 }
 @media(max-width:640px){.cheatwrap{columns:1}}
+
+/* ---- labs simulateur ---- */
+.labgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:13px;margin-top:6px}
+.labcard{border:1px solid var(--border);background:var(--surface);border-radius:var(--radius);padding:15px;
+  cursor:pointer;display:flex;flex-direction:column;gap:9px;transition:border-color .15s,transform .15s;text-align:left;font-family:var(--sans);color:var(--ink)}
+.labcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.labcard .lt{display:flex;gap:9px;align-items:center;font-weight:700;font-size:14px;line-height:1.3}
+.labcard .lt .ic{font-size:20px}
+.labcard .lm{font-family:var(--mono);font-size:10.5px;color:var(--muted);background:var(--surface-2);
+  border:1px solid var(--border);padding:2px 8px;border-radius:6px;align-self:flex-start}
+.labcard .cbar{height:6px;background:var(--border);border-radius:99px;overflow:hidden}
+.labcard .cbar>i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.labcard .lst{font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;justify-content:space-between}
+.labcard .done{color:var(--good);font-weight:700}
+#labview{display:none}
+#labview.on{display:block}
+#labhome.off{display:none}
+.labtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.labtop .back{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--muted);background:var(--surface-2);
+  border:1px solid var(--border);border-radius:8px;padding:8px 13px;cursor:pointer}
+.labtop .back:hover{color:var(--ink);border-color:var(--border-strong)}
+.labtop h2{margin:0;font-size:1.15rem;flex:1;min-width:200px}
+.labtop .lprog{font-family:var(--mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mission{border:1px solid var(--accent);border-left-width:4px;background:var(--accent-tint);border-radius:var(--radius-sm);
+  padding:13px 16px;margin-bottom:12px}
+.mission .mt{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-ink);
+  font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mission .mt .mch{background:var(--accent);color:#fff;padding:1px 8px;border-radius:6px;font-size:10px}
+.mission .msay{font-size:14.5px;line-height:1.55}
+.mission .msay code{background:var(--surface);white-space:pre-wrap}
+.mission .mbtns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.mission .mbtns button{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--accent-ink);
+  background:var(--surface);border:1px solid var(--accent);border-radius:7px;padding:6px 11px;cursor:pointer}
+.mission .mhint{display:none;margin-top:10px;font-size:13px;background:var(--surface);border:1px dashed var(--border-strong);
+  border-radius:8px;padding:9px 12px}
+.mission .mhint.on{display:block}
+.mission .mhint code{white-space:pre-wrap}
+.term{border-radius:12px;overflow:hidden;border:1px solid var(--border-strong);box-shadow:0 12px 30px -18px rgba(0,0,0,.5)}
+.term .thead{display:flex;align-items:center;gap:8px;padding:9px 14px;background:#2a2f3a;color:#cdd3de;
+  font-family:var(--mono);font-size:11.5px}
+.term .thead .dots{display:flex;gap:5px}
+.term .thead .dots i{width:10px;height:10px;border-radius:50%;display:block}
+.term .tbody{height:340px;overflow-y:auto;padding:12px 14px;font-family:var(--mono);font-size:12.5px;line-height:1.5;
+  white-space:pre-wrap;word-break:break-word}
+.term .tin{display:flex;gap:8px;padding:10px 14px;border-top:1px solid rgba(255,255,255,.08);align-items:center}
+.term .tin .tp{font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+.term .tin input{flex:1;background:transparent;border:0;outline:0;font-family:var(--mono);font-size:13px;min-width:60px}
+.term.deb .tbody,.term.deb .tin{background:#12161c;color:#d5dce6}
+.term.deb .tp{color:#7ee08a}.term.deb .tin input{color:#d5dce6;caret-color:#7ee08a}
+.term.win .tbody,.term.win .tin{background:#012456;color:#eef2f8}
+.term.win .tp{color:#ffe97a}.term.win .tin input{color:#eef2f8;caret-color:#ffe97a}
+.term.net .tbody,.term.net .tin{background:#0b0e11;color:#c9d1d9}
+.term.net .tp{color:#9ecbff}.term.net .tin input{color:#c9d1d9;caret-color:#9ecbff}
+.term.pf .tbody,.term.pf .tin{background:#101010;color:#e8c987}
+.term.pf .tp{color:#e8c987}.term.pf .tin input{color:#f1e3c0;caret-color:#e8c987}
+.term .ok{color:#6fdd8b}.term .err{color:#ff8f85}.term .dim{opacity:.62}
+.labdone{display:none;text-align:center;border:1px dashed var(--good-bd);background:var(--good-tint);
+  border-radius:var(--radius);padding:22px;margin-top:14px}
+.labdone.on{display:block}
+.labdone .big{font-size:1.6rem;font-weight:800;color:var(--good)}
+@media(max-width:700px){.term .tbody{height:260px}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -425,6 +486,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
         <a data-target="cheat"><span class="tag">🎯</span><span class="nm">Antisèche (à imprimer)</span></a>
         <a data-target="plan"><span class="tag">📅</span><span class="nm">Plan 3 jours</span></a>
         <a data-target="mock"><span class="tag">🎤</span><span class="nm">Examen blanc mixte</span></a>
+        <a data-target="labs"><span class="tag">🖥️</span><span class="nm">Labs pratiques (VM)</span></a>
       </div>
     </nav>
     <div class="foot">
@@ -450,7 +512,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
         <div class="c"><h4>Bloc 2 — CCP</h4><p><span class="big">5</span> compétences · mise en situation 1h30, entretien 45&nbsp;min</p></div>
         <div class="c"><h4>À l'épreuve</h4><p><span class="big">1</span> question en <b>anglais technique</b> dans le questionnaire → encadré « Anglais » dans chaque fiche</p></div>
       </div>
-      <div class="ctarow"><a class="memocta" data-goto="memo">🧠 <b>Mémo visuel</b><span class="go">→</span></a><a class="memocta" data-goto="cheat">🎯 <b>Antisèche imprimable</b><span class="go">→</span></a><a class="memocta" data-goto="plan">📅 <b>Plan 3 jours</b><span class="go">→</span></a><a class="memocta" data-goto="mock">🎤 <b>Examen blanc mixte</b><span class="go">→</span></a></div>
+      <div class="ctarow"><a class="memocta" data-goto="memo">🧠 <b>Mémo visuel</b><span class="go">→</span></a><a class="memocta" data-goto="cheat">🎯 <b>Antisèche imprimable</b><span class="go">→</span></a><a class="memocta" data-goto="plan">📅 <b>Plan 3 jours</b><span class="go">→</span></a><a class="memocta" data-goto="mock">🎤 <b>Examen blanc mixte</b><span class="go">→</span></a><a class="memocta" data-goto="labs">🖥️ <b>Labs pratiques</b>&nbsp;— tape les vraies commandes<span class="go">→</span></a></div>
       <div class="secttl">Bloc 1 · Exploiter l'infrastructure &amp; assurer le support</div>
       <div class="cards" id="cards1"></div>
       <div class="secttl">Bloc 2 · Maintenir, faire évoluer &amp; sécuriser</div>
@@ -2128,6 +2190,47 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
       </div>
     </section>
 
+
+    <!-- ===================== LABS ===================== -->
+    <section class="view" id="labs" hidden>
+      <div id="labhome">
+        <div class="comp-head">
+          <div class="crumb"><b>Labs pratiques</b> · fausses VM, vraies commandes</div>
+          <div class="row"><span class="tag">🖥️</span><h1>Le simulateur de TP</h1></div>
+          <div class="sources"><span>Des mini-machines simulées dans ton navigateur, tirées de TES TP (ateliers AD/DHCP, scripts Bash, tes comptes-rendus pfSense, Packet Tracer…). Tu tapes les vraies commandes, le terminal répond comme en vrai. C'est exactement le format de l'épreuve pratique : une consigne → la bonne commande sur la bonne machine.</span></div>
+        </div>
+        <div class="box clair"><div class="bt">💡 Comment ça marche</div>
+          <p>Choisis un lab, lis la <strong>mission</strong> en haut, et tape la commande dans le terminal. Si tu sèches : clique <strong>💡 Indice</strong> (ou tape <code>indice</code>), puis <strong>👀 Solution</strong> — mais recopie-la à la main, c'est le geste qui ancre la mémoire. Ta progression est sauvegardée.</p></div>
+        <div class="labgrid" id="labgrid"></div>
+      </div>
+      <div id="labview">
+        <div class="labtop">
+          <button class="back" id="labback">← Tous les labs</button>
+          <h2 id="labtitle"></h2>
+          <span class="lprog" id="labprog"></span>
+          <button class="back" id="labreset">↺ Recommencer</button>
+        </div>
+        <div class="mission">
+          <div class="mt"><span>🎯 Mission</span><span class="mch" id="labmch"></span><span class="dim" id="labstepn"></span></div>
+          <div class="msay" id="labsay"></div>
+          <div class="mbtns">
+            <button id="labhintbtn">💡 Indice</button>
+            <button id="labsolbtn">👀 Solution</button>
+          </div>
+          <div class="mhint" id="labhint"></div>
+        </div>
+        <div class="term" id="labterm">
+          <div class="thead"><span class="dots"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i></span><span id="labthead"></span></div>
+          <div class="tbody" id="labout"></div>
+          <div class="tin"><span class="tp" id="labprompt"></span><input id="labin" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="tape ta commande puis Entrée…"></div>
+        </div>
+        <div class="labdone" id="labdone"><div class="big">🎉 Lab terminé !</div><p class="msg" style="color:var(--muted)"></p>
+          <button class="back" id="labagain" style="margin-top:8px">↺ Refaire ce lab</button>
+          <button class="back" id="labback2" style="margin-top:8px">← Choisir un autre lab</button>
+        </div>
+      </div>
+    </section>
+
   </main>
 </div>
 
@@ -2243,6 +2346,142 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
     var m=META.find(function(x){return x.id===id});return m?cardHTML(m):''}).join('')}
   fill('cards1',g1);fill('cards2',g2);fill('cards3',g3);
   document.querySelectorAll('.view').forEach(function(v){if(v.id!=='home')recalc(v.id)});
+})();
+</script>
+<script>(function(){
+  var LABS=[{"id": "lnx-users", "title": "Utilisateurs & droits Debian", "machine": "DEB-S1", "icon": "🐧", "context": "Le service comptabilité d'ICARO accueille un nouvel arrivant, Jean Dupont. Tu es root sur le serveur Debian DEB-S1 : crée son compte, un groupe compta et un dossier partagé sécurisé.", "steps": [{"say": "Crée l'utilisateur jdupont AVEC son dossier personnel grâce à l'option -m : <code>useradd -m jdupont</code>", "accept": ["^(sudo\\s+)?useradd\\s+-m\\s+jdupont\\s*$"], "cmd": "useradd -m jdupont", "out": "", "tip": "Sans -m, pas de dossier /home/jdupont ; et sous Linux, aucune sortie = succès."}, {"say": "Donne-lui un mot de passe : <code>passwd jdupont</code> (puis saisis-le deux fois)", "accept": ["^(sudo\\s+)?passwd\\s+jdupont\\s*$"], "cmd": "passwd jdupont", "out": "Nouveau mot de passe :\nRetapez le nouveau mot de passe :\npasswd : le mot de passe a été mis à jour avec succès", "tip": "Le mot de passe ne s'affiche pas pendant la frappe : c'est normal."}, {"say": "Vérifie que le compte existe : <code>id jdupont</code>", "accept": ["^(sudo\\s+)?id\\s+jdupont\\s*$"], "cmd": "id jdupont", "out": "uid=1001(jdupont) gid=1001(jdupont) groupes=1001(jdupont)", "tip": "id montre l'UID, le groupe principal et les groupes secondaires."}, {"say": "Crée le groupe compta : <code>groupadd compta</code>", "accept": ["^(sudo\\s+)?groupadd\\s+compta\\s*$"], "cmd": "groupadd compta", "out": "", "tip": "Le groupe est enregistré dans /etc/group (vérifiable avec grep compta /etc/group)."}, {"say": "Ajoute jdupont au groupe compta SANS toucher à ses autres groupes : <code>usermod -aG compta jdupont</code>", "accept": ["^(sudo\\s+)?usermod\\s+-aG\\s+compta\\s+jdupont\\s*$", "^(sudo\\s+)?usermod\\s+-a\\s+-G\\s+compta\\s+jdupont\\s*$"], "cmd": "usermod -aG compta jdupont", "out": "", "tip": "Le -a (append) est vital : sans lui, -G remplacerait TOUS les groupes secondaires."}, {"say": "Vérifie l'ajout au groupe : à nouveau <code>id jdupont</code>", "accept": ["^(sudo\\s+)?id\\s+jdupont\\s*$"], "cmd": "id jdupont", "out": "uid=1001(jdupont) gid=1001(jdupont) groupes=1001(jdupont),1002(compta)", "tip": "compta apparaît dans la liste."}, {"say": "Crée le dossier partagé du service : <code>mkdir /srv/compta</code>", "accept": ["^(sudo\\s+)?mkdir\\s+(-p\\s+)?/srv/compta/?\\s*$"], "cmd": "mkdir /srv/compta", "out": "", "tip": "/srv est l'emplacement standard pour les données servies/partagées."}, {"say": "Associe le dossier au groupe compta en gardant root propriétaire : <code>chown root:compta /srv/compta</code>", "accept": ["^(sudo\\s+)?chown\\s+root:compta\\s+/srv/compta/?\\s*$"], "cmd": "chown root:compta /srv/compta", "out": "", "tip": "Syntaxe propriétaire:groupe — le : sépare l'utilisateur et le groupe."}, {"say": "Tous les droits au propriétaire et au groupe, rien aux autres : <code>chmod 770 /srv/compta</code>", "accept": ["^(sudo\\s+)?chmod\\s+770\\s+/srv/compta/?\\s*$"], "cmd": "chmod 770 /srv/compta", "out": "", "tip": "770 = rwx root, rwx groupe compta, aucun droit pour les autres."}, {"say": "Contrôle final : <code>ls -ld /srv/compta</code>", "accept": ["^(sudo\\s+)?ls\\s+-(ld|dl)\\s+/srv/compta/?\\s*$"], "cmd": "ls -ld /srv/compta", "out": "drwxrwx--- 2 root compta 4096 13 juil. 14:20 /srv/compta", "tip": "d (dossier), rwx (root), rwx (compta), --- (les autres). Mission accomplie 🎉"}]}, {"id": "lnx-web-down", "title": "Panne : le site web ne répond plus", "machine": "SRV-WEB", "icon": "🚨", "context": "Lundi matin chez ICARO : un utilisateur signale que l'extranet ne répond plus. Tu ouvres une session root sur SRV-WEB (172.20.12.200) pour diagnostiquer puis réparer. (C'est LA panne donnée à de vrais candidats TSSR.)", "steps": [{"say": "Constate la panne depuis le serveur : <code>curl -I http://localhost</code>", "accept": ["^(sudo\\s+)?curl\\s+((-I|-i|-v)\\s+)?(http://)?(localhost|127\\.0\\.0\\.1)(:80)?/?\\s*$"], "cmd": "curl -I http://localhost", "out": "curl: (7) Failed to connect to localhost port 80 after 0 ms: Connection refused", "tip": "« Connection refused » = personne n'écoute sur le port 80 : le problème est sur le serveur."}, {"say": "Confirme qu'aucun processus n'écoute sur le port 80 : <code>ss -tlnp</code>", "accept": ["^(sudo\\s+)?ss\\s+-[tlnp]{3,4}(\\s*\\|\\s*grep\\s+\\S+)?\\s*$", "^(sudo\\s+)?netstat\\s+-[tlnpe]{3,5}(\\s*\\|\\s*grep\\s+\\S+)?\\s*$"], "cmd": "ss -tlnp", "out": "State   Recv-Q  Send-Q   Local Address:Port    Process\nLISTEN  0       128            0.0.0.0:22       users((\"sshd\",pid=612,fd=3))", "tip": "Seul le port 22 écoute : aucune ligne :80, le service web est bien arrêté."}, {"say": "Vérifie l'état du service Apache : <code>systemctl status apache2</code>", "accept": ["^(sudo\\s+)?systemctl\\s+status\\s+apache2(\\.service)?\\s*$"], "cmd": "systemctl status apache2", "out": "○ apache2.service - The Apache HTTP Server\n     Loaded: loaded (/lib/systemd/system/apache2.service; disabled)\n     Active: inactive (dead)", "tip": "« inactive (dead) » = arrêté ; note aussi « disabled » : il ne reviendra pas au boot."}, {"say": "Répare : <code>systemctl start apache2</code>", "accept": ["^(sudo\\s+)?systemctl\\s+start\\s+apache2(\\.service)?\\s*$"], "cmd": "systemctl start apache2", "out": "", "tip": "start ne renvoie rien quand tout va bien : on vérifie toujours derrière."}, {"say": "Vérifie que le service tourne : <code>systemctl status apache2</code>", "accept": ["^(sudo\\s+)?systemctl\\s+status\\s+apache2(\\.service)?\\s*$"], "cmd": "systemctl status apache2", "out": "● apache2.service - The Apache HTTP Server\n     Active: active (running) since Mon 2026-07-13 11:52:04 CEST; 6s ago\n   Main PID: 1291 (apache2)", "tip": "« active (running) » avec un Main PID : Apache est relancé."}, {"say": "Confirme que le site répond : <code>curl -I http://localhost</code>", "accept": ["^(sudo\\s+)?curl\\s+((-I|-i|-v)\\s+)?(http://)?(localhost|127\\.0\\.0\\.1)(:80)?/?\\s*$"], "cmd": "curl -I http://localhost", "out": "HTTP/1.1 200 OK\nServer: Apache/2.4.62 (Debian)\nContent-Type: text/html", "tip": "Le code 200 OK confirme que la panne est corrigée."}, {"say": "Évite que ça revienne au prochain redémarrage : <code>systemctl enable apache2</code>", "accept": ["^(sudo\\s+)?systemctl\\s+enable\\s+apache2(\\.service)?(\\s+--now)?\\s*$"], "cmd": "systemctl enable apache2", "out": "Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.", "tip": "start = maintenant, enable = à chaque démarrage : il faut souvent les deux."}, {"say": "Vérifie l'activation au boot : <code>systemctl is-enabled apache2</code>", "accept": ["^(sudo\\s+)?systemctl\\s+is-enabled\\s+apache2(\\.service)?\\s*$"], "cmd": "systemctl is-enabled apache2", "out": "enabled", "tip": "Apache sera lancé automatiquement à chaque démarrage du serveur."}, {"say": "Documente l'incident pour le ticket : <code>journalctl -u apache2 -n 10</code>", "accept": ["^(sudo\\s+)?journalctl\\s+-u\\s+apache2(\\.service)?(\\s+\\S+)*\\s*$"], "cmd": "journalctl -u apache2 -n 10", "out": "juil. 13 08:14:32 SRV-WEB systemd[1]: Stopping apache2.service...\njuil. 13 08:14:32 SRV-WEB systemd[1]: Stopped apache2.service.\njuil. 13 11:52:04 SRV-WEB systemd[1]: Started apache2.service.", "tip": "Le journal date l'arrêt à 08:14 : de quoi renseigner le ticket GLPI. Incident résolu 🎉"}]}, {"id": "ad", "title": "Créer et peupler un domaine Active Directory", "machine": "SRV-AD", "icon": "🪟", "context": "Tu es connecté en Administrateur sur CD01, le contrôleur du domaine nolan.lcl (TP 3 et 4 ENI). Tu vas créer l'agence Vertou, son service Production, deux utilisateurs et leur groupe.", "steps": [{"say": "Commence par vérifier l'adresse IP du serveur. Affiche les adresses IPv4 avec <code>Get-NetIPAddress -AddressFamily IPv4</code> (ou <code>ipconfig</code>).", "accept": ["Get-NetIPAddress(\\s+-AddressFamily\\s+IPv4)?", "^ipconfig$"], "cmd": "Get-NetIPAddress -AddressFamily IPv4", "out": "IPAddress         : 172.23.1.1\nInterfaceAlias    : Ethernet0\nAddressFamily     : IPv4\nPrefixLength      : 24\nPrefixOrigin      : Manual\nAddressState      : Preferred", "tip": "CD01 a bien l'adresse statique 172.23.1.1/24 prévue au plan d'adressage du TP1."}, {"say": "Vérifie que tu es bien sur le contrôleur du domaine nolan.lcl avec <code>Get-ADDomain</code>.", "accept": ["Get-ADDomain"], "cmd": "Get-ADDomain", "out": "DNSRoot              : nolan.lcl\nDomainMode           : Windows2016Domain\nInfrastructureMaster : CD01.nolan.lcl\nNetBIOSName          : NOLAN\nPDCEmulator          : CD01.nolan.lcl\nRIDMaster            : CD01.nolan.lcl", "tip": "Le domaine nolan.lcl existe et CD01 en est le contrôleur : on peut créer des objets dedans."}, {"say": "Crée l'unité d'organisation de l'agence Vertou à la racine du domaine : <code>New-ADOrganizationalUnit -Name \"Vertou\" -Path \"DC=nolan,DC=lcl\"</code>", "accept": ["New-ADOrganizationalUnit.*Vertou.*DC=nolan,\\s*DC=lcl"], "cmd": "New-ADOrganizationalUnit -Name \"Vertou\" -Path \"DC=nolan,DC=lcl\"", "out": "(aucune sortie — en PowerShell, pas de message = commande réussie)", "tip": "L'OU Vertou est un tiroir qui va ranger tous les objets de l'agence."}, {"say": "Crée l'OU du service Production À L'INTÉRIEUR de Vertou (le -Path pointe sur Vertou).", "accept": ["New-ADOrganizationalUnit.*Production.*OU=Vertou,\\s*DC=nolan,\\s*DC=lcl"], "cmd": "New-ADOrganizationalUnit -Name \"Production\" -Path \"OU=Vertou,DC=nolan,DC=lcl\"", "out": "(aucune sortie — l'OU Production a été créée dans Vertou)", "tip": "Le -Path indique le parent : Production est imbriquée dans Vertou, comme dans le TP4."}, {"say": "Crée l'utilisateur <strong>Philippe</strong> dans cette OU, mot de passe P@ssw0rd, compte activé : <code>New-ADUser -Name \"Philippe\" -SamAccountName \"philippe\" -Path \"OU=Production,OU=Vertou,DC=nolan,DC=lcl\" -AccountPassword (ConvertTo-SecureString \"P@ssw0rd\" -AsPlainText -Force) -Enabled $true</code>", "accept": ["New-ADUser.*Philippe.*-AccountPassword.*-Enabled\\s*\\$?true", "New-ADUser.*Philippe.*-Enabled\\s*\\$?true.*-AccountPassword"], "cmd": "New-ADUser -Name \"Philippe\" -SamAccountName \"philippe\" -Path \"OU=Production,OU=Vertou,DC=nolan,DC=lcl\" -AccountPassword (ConvertTo-SecureString \"P@ssw0rd\" -AsPlainText -Force) -Enabled $true", "out": "(aucune sortie — l'utilisateur Philippe a été créé et activé)", "tip": "Sans -AccountPassword et -Enabled $true, le compte serait créé désactivé et inutilisable."}, {"say": "Crée de la même façon le second utilisateur : <strong>Pascal</strong> (SamAccountName pascal, même OU, même mot de passe, compte activé).", "accept": ["New-ADUser.*Pascal.*-AccountPassword.*-Enabled\\s*\\$?true", "New-ADUser.*Pascal.*-Enabled\\s*\\$?true.*-AccountPassword"], "cmd": "New-ADUser -Name \"Pascal\" -SamAccountName \"pascal\" -Path \"OU=Production,OU=Vertou,DC=nolan,DC=lcl\" -AccountPassword (ConvertTo-SecureString \"P@ssw0rd\" -AsPlainText -Force) -Enabled $true", "out": "(aucune sortie — l'utilisateur Pascal a été créé et activé)", "tip": "Répéter une commande en changeant les valeurs, c'est le premier pas vers un script de création en masse."}, {"say": "Crée le groupe global de sécurité <strong>Production</strong> dans la même OU : <code>New-ADGroup -Name \"Production\" -GroupScope Global -Path \"OU=Production,OU=Vertou,DC=nolan,DC=lcl\"</code>", "accept": ["New-ADGroup.*Production.*Global"], "cmd": "New-ADGroup -Name \"Production\" -GroupScope Global -Path \"OU=Production,OU=Vertou,DC=nolan,DC=lcl\"", "out": "(aucune sortie — le groupe Production a été créé)", "tip": "On donnera les droits au GROUPE plutôt qu'à chaque compte : c'est le G de AGDLP."}, {"say": "Ajoute Philippe et Pascal dans le groupe : <code>Add-ADGroupMember -Identity \"Production\" -Members philippe,pascal</code>", "accept": ["Add-ADGroupMember.*Production.*philippe\\s*,\\s*pascal", "Add-ADGroupMember.*Production.*pascal\\s*,\\s*philippe"], "cmd": "Add-ADGroupMember -Identity \"Production\" -Members philippe,pascal", "out": "(aucune sortie — les 2 membres ont été ajoutés au groupe Production)", "tip": "-Members accepte plusieurs comptes séparés par des virgules : un seul appel suffit."}, {"say": "Vérifie le compte de Philippe avec <code>Get-ADUser -Identity philippe</code> : Enabled doit valoir True.", "accept": ["Get-ADUser\\s+(-Identity\\s+)?[\"']?philippe"], "cmd": "Get-ADUser -Identity philippe", "out": "DistinguishedName : CN=Philippe,OU=Production,OU=Vertou,DC=nolan,DC=lcl\nEnabled           : True\nName              : Philippe\nObjectClass       : user\nSamAccountName    : philippe", "tip": "Le DistinguishedName confirme l'emplacement, Enabled: True confirme que le compte est actif."}, {"say": "Dernière vérification : liste les membres du groupe avec <code>Get-ADGroupMember -Identity \"Production\"</code>", "accept": ["Get-ADGroupMember.*Production"], "cmd": "Get-ADGroupMember -Identity \"Production\"", "out": "name              : Philippe\nSamAccountName    : philippe\nobjectClass       : user\n\nname              : Pascal\nSamAccountName    : pascal\nobjectClass       : user", "tip": "Structure OU + utilisateurs + groupe du TP4 en place. Mission accomplie 🎉"}]}, {"id": "dhcp", "title": "Installer et configurer un serveur DHCP", "machine": "SRV-AD", "icon": "📡", "context": "Tu es sur SERVEUR1 (Windows Server 2019, membre du domaine nolan.lcl), en 172.23.1.2/24 (TP 9.1 ENI). Objectif : distribuer 100 adresses aux clients, passerelle 172.23.1.254, DNS 172.23.1.1.", "steps": [{"say": "Vérifie l'adresse IP statique du serveur (<code>Get-NetIPAddress -AddressFamily IPv4</code> ou <code>ipconfig</code>).", "accept": ["Get-NetIPAddress(\\s+-AddressFamily\\s+IPv4)?", "^ipconfig$"], "cmd": "Get-NetIPAddress -AddressFamily IPv4", "out": "IPAddress         : 172.23.1.2\nInterfaceAlias    : Ethernet0\nPrefixLength      : 24\nPrefixOrigin      : Manual\nAddressState      : Preferred", "tip": "Un serveur DHCP doit TOUJOURS avoir une adresse statique : ici 172.23.1.2/24."}, {"say": "Installe le rôle DHCP avec ses outils : <code>Install-WindowsFeature -Name DHCP -IncludeManagementTools</code>", "accept": ["(Install|Add)-WindowsFeature\\s+(-Name\\s+)?[\"']?DHCP"], "cmd": "Install-WindowsFeature -Name DHCP -IncludeManagementTools", "out": "Success Restart Needed Exit Code      Feature Result\n------- -------------- ---------      --------------\nTrue    No             Success        {Serveur DHCP, Outils du serveur DHCP}\nAVERTISSEMENT : des étapes de configuration supplémentaires sont nécessaires.", "tip": "Le rôle est installé mais le serveur ne distribue encore rien : il faut l'autoriser puis créer une étendue."}, {"say": "Autorise le serveur dans Active Directory : <code>Add-DhcpServerInDC -DnsName serveur1.nolan.lcl -IPAddress 172.23.1.2</code>", "accept": ["Add-DhcpServerInDC.*serveur1.*172\\.23\\.1\\.2", "Add-DhcpServerInDC\\s*$"], "cmd": "Add-DhcpServerInDC -DnsName serveur1.nolan.lcl -IPAddress 172.23.1.2", "out": "(aucune sortie — serveur1.nolan.lcl est maintenant autorisé dans l'annuaire)", "tip": "Dans un domaine, un DHCP non autorisé refuse de distribuer : protection contre les DHCP pirates."}, {"say": "Crée l'étendue de 100 adresses : <code>Add-DhcpServerv4Scope -Name \"Clients\" -StartRange 172.23.1.100 -EndRange 172.23.1.199 -SubnetMask 255.255.255.0 -State Active</code>", "accept": ["Add-DhcpServerv4Scope.*172\\.23\\.1\\.100.*172\\.23\\.1\\.199"], "cmd": "Add-DhcpServerv4Scope -Name \"Clients\" -StartRange 172.23.1.100 -EndRange 172.23.1.199 -SubnetMask 255.255.255.0 -State Active", "out": "(aucune sortie — l'étendue Clients 172.23.1.100-199 a été créée et activée)", "tip": "De .100 à .199 = pile les 100 adresses demandées, sans toucher au serveur (.2) ni à la passerelle (.254)."}, {"say": "Configure la passerelle des clients (option 3) : <code>Set-DhcpServerv4OptionValue -ScopeId 172.23.1.0 -Router 172.23.1.254</code>", "accept": ["Set-DhcpServerv4OptionValue.*-Router\\s+172\\.23\\.1\\.254"], "cmd": "Set-DhcpServerv4OptionValue -ScopeId 172.23.1.0 -Router 172.23.1.254", "out": "(aucune sortie — option 3 Routeur = 172.23.1.254 définie sur l'étendue)", "tip": "Sans l'option Router, les clients ne peuvent pas sortir de leur réseau."}, {"say": "Configure le DNS (option 6) et le suffixe (option 15) : <code>Set-DhcpServerv4OptionValue -ScopeId 172.23.1.0 -DnsServer 172.23.1.1 -DnsDomain nolan.lcl</code>", "accept": ["Set-DhcpServerv4OptionValue.*-DnsServer\\s+172\\.23\\.1\\.1"], "cmd": "Set-DhcpServerv4OptionValue -ScopeId 172.23.1.0 -DnsServer 172.23.1.1 -DnsDomain nolan.lcl", "out": "(aucune sortie — options 6 DNS = 172.23.1.1 et 15 domaine = nolan.lcl définies)", "tip": "Options 3/6/15 = routeur/DNS/suffixe — le trio à connaître par cœur pour l'examen."}, {"say": "Le TP demande une réservation pour client2 sur la 10e adresse de la plage (172.23.1.109) : <code>Add-DhcpServerv4Reservation -ScopeId 172.23.1.0 -IPAddress 172.23.1.109 -ClientId \"00-15-5D-3A-11-0A\" -Name \"client2\"</code>", "accept": ["Add-DhcpServerv4Reservation.*172\\.23\\.1\\.109"], "cmd": "Add-DhcpServerv4Reservation -ScopeId 172.23.1.0 -IPAddress 172.23.1.109 -ClientId \"00-15-5D-3A-11-0A\" -Name \"client2\"", "out": "(aucune sortie — réservation 172.23.1.109 pour client2 créée)", "tip": "Une réservation lie la MAC de client2 à cette IP : il recevra toujours la même adresse."}, {"say": "Redémarre le service DHCP : <code>Restart-Service dhcpserver</code>", "accept": ["Restart-Service\\s+[\"']?dhcpserver"], "cmd": "Restart-Service dhcpserver", "out": "(aucune sortie — le service Serveur DHCP a redémarré)", "tip": "Le nom du service Windows est dhcpserver ; Get-Service dhcpserver pour vérifier son état."}, {"say": "Vérifie l'étendue : <code>Get-DhcpServerv4Scope</code>", "accept": ["Get-DhcpServerv4Scope"], "cmd": "Get-DhcpServerv4Scope", "out": "ScopeId       SubnetMask      Name      State    StartRange     EndRange\n-------       ----------      ----      -----    ----------     --------\n172.23.1.0    255.255.255.0   Clients   Active   172.23.1.100   172.23.1.199", "tip": "Étendue Active avec la bonne plage — baux de 8 jours par défaut."}, {"say": "Contrôle les baux distribués : <code>Get-DhcpServerv4Lease -ScopeId 172.23.1.0</code>", "accept": ["Get-DhcpServerv4Lease"], "cmd": "Get-DhcpServerv4Lease -ScopeId 172.23.1.0", "out": "IPAddress      ClientId            HostName            AddressState\n---------      --------            --------            ------------\n172.23.1.100   00-0c-29-5f-8a-21   client1.nolan.lcl   Active\n172.23.1.109   00-15-5d-3a-11-0a   client2.nolan.lcl   ActiveReservation", "tip": "client1 a la 1ʳᵉ adresse libre, client2 a sa réservation : serveur DHCP opérationnel 🎉"}]}, {"id": "lnx-ssh", "title": "Configurer SSH proprement", "machine": "CLI-ADM", "icon": "🔐", "context": "TP SSH (M05TP04) : depuis le poste d'administration (session fred), tu dois administrer DEB-S1 (192.168.6.66, compte admin) sans mot de passe grâce à un échange de clés.", "steps": [{"say": "Sur DEB-S1, vérifie si le serveur SSH est installé : <code>dpkg -l | grep openssh-server</code>", "accept": ["^(sudo\\s+)?dpkg\\s+-l\\s*\\|\\s*grep\\s+(openssh-server|openssh|ssh)\\s*$"], "cmd": "dpkg -l | grep openssh-server", "out": "", "tip": "Aucune ligne = paquet absent ; une ligne « ii » aurait signifié installé."}, {"say": "Installe le serveur SSH : <code>apt install openssh-server</code>", "accept": ["^(sudo\\s+)?apt(-get)?\\s+install\\s+(-y\\s+)?openssh-server\\s*$"], "cmd": "apt install openssh-server", "out": "Les NOUVEAUX paquets suivants seront installés :\n  openssh-server openssh-sftp-server\nParamétrage de openssh-server (1:9.2p1-2+deb12u3) ...\nCreated symlink /etc/systemd/system/multi-user.target.wants/ssh.service → /lib/systemd/system/ssh.service.", "tip": "Sous Debian le paquet s'appelle openssh-server, le service est activé automatiquement."}, {"say": "Vérifie que le service tourne : <code>systemctl status ssh</code>", "accept": ["^(sudo\\s+)?systemctl\\s+status\\s+sshd?(\\.service)?\\s*$"], "cmd": "systemctl status ssh", "out": "● ssh.service - OpenBSD Secure Shell server\n     Loaded: loaded (/lib/systemd/system/ssh.service; enabled)\n     Active: active (running) since Mon 2026-07-13 14:02:11 CEST\n   Main PID: 3125 (sshd)", "tip": "Sous Debian le service se nomme ssh (le démon s'appelle sshd)."}, {"say": "Sur ton poste (fred), génère ta paire de clés : <code>ssh-keygen</code> (valide les 3 questions avec Entrée)", "accept": ["^ssh-keygen(\\s+-t\\s+rsa(\\s+-b\\s+(2048|4096))?)?\\s*$"], "cmd": "ssh-keygen", "out": "Generating public/private rsa key pair.\nEnter file in which to save the key (/home/fred/.ssh/id_rsa):\nYour identification has been saved in /home/fred/.ssh/id_rsa.\nYour public key has been saved in /home/fred/.ssh/id_rsa.pub.\nThe key fingerprint is:\nSHA256:HZrJ3cZaWa4nrmvHqve4oLVVUgfxcPauRZyBbAA8ip8 fred@cli-adm", "tip": "2 fichiers : id_rsa (clé PRIVÉE, ne la partage jamais) et id_rsa.pub (publique, à copier sur le serveur)."}, {"say": "Copie ta clé publique sur le serveur : <code>ssh-copy-id admin@192.168.6.66</code>", "accept": ["^ssh-copy-id(\\s+-i\\s+\\S+)?\\s+admin@192\\.168\\.6\\.66\\s*$"], "cmd": "ssh-copy-id admin@192.168.6.66", "out": "/usr/bin/ssh-copy-id: INFO: Source of key(s): /home/fred/.ssh/id_rsa.pub\nadmin@192.168.6.66's password:\n\nNumber of key(s) added: 1\n\nNow try logging into the machine, with: ssh 'admin@192.168.6.66'", "tip": "ssh-copy-id ajoute ta clé publique dans ~/.ssh/authorized_keys du compte admin, côté serveur."}, {"say": "Teste la connexion sans mot de passe : <code>ssh admin@192.168.6.66</code>", "accept": ["^ssh\\s+admin@192\\.168\\.6\\.66\\s*$"], "cmd": "ssh admin@192.168.6.66", "out": "Linux DEB-S1 6.1.0-37-amd64 x86_64\nLast login: Mon Jul 13 14:05:32 2026 from 192.168.6.10\nadmin@DEB-S1:~$", "tip": "Aucun mot de passe demandé : l'échange de clés fonctionne."}, {"say": "Envoie un fichier avec la copie sécurisée : <code>scp /etc/network/interfaces admin@192.168.6.66:/tmp</code>", "accept": ["^scp\\s+/etc/network/interfaces\\s+admin@192\\.168\\.6\\.66:(/tmp/?|~/?)?\\s*$"], "cmd": "scp /etc/network/interfaces admin@192.168.6.66:/tmp", "out": "interfaces                                    100%  312     0.3KB/s   00:00", "tip": "scp = SSH + cp : source puis destination, le distant s'écrit utilisateur@machine:chemin."}, {"say": "Contrôle le réglage root du serveur SSH : <code>grep PermitRootLogin /etc/ssh/sshd_config</code>", "accept": ["^(sudo\\s+)?grep\\s+(-i\\s+)?['\"]?PermitRootLogin['\"]?\\s+/etc/ssh/sshd_config\\s*$"], "cmd": "grep PermitRootLogin /etc/ssh/sshd_config", "out": "#PermitRootLogin prohibit-password", "tip": "Par défaut : root ne peut PAS se connecter par mot de passe (clés uniquement)."}, {"say": "Après toute modification de sshd_config : <code>systemctl restart ssh</code>", "accept": ["^(sudo\\s+)?systemctl\\s+restart\\s+sshd?(\\.service)?\\s*$"], "cmd": "systemctl restart ssh", "out": "", "tip": "Un changement de config n'est pris en compte qu'après restart (ou reload). Lab terminé 🎉"}]}, {"id": "cisco-sw", "title": "Cisco — découverte IOS & config d'un switch", "machine": "SW1 (Cisco)", "icon": "🔀", "context": "Un switch Cisco 2960 neuf vient d'être branché en console : prompt initial « Switch> ». Objectif : le nommer SW1, créer le VLAN 10 TECHNICIENS, y affecter le port Fa0/1, puis sauvegarder.", "prompt0": "Switch>", "steps": [{"say": "Tu es en mode utilisateur (<code>Switch></code>). Passe en mode privilégié.", "accept": ["^\\s*en(a(b(l(e)?)?)?)?\\s*$"], "cmd": "enable", "out": "", "tip": "Le prompt passe de > à # : accès à toutes les commandes d'exploitation.", "prompt": "Switch#"}, {"say": "Entre en mode de configuration globale.", "accept": ["^\\s*conf(ig(ure)?)?\\s+t(erm(inal)?)?\\s*$"], "cmd": "configure terminal", "out": "Enter configuration commands, one per line.  End with CNTL/Z.", "tip": "L'abréviation « conf t » est acceptée par IOS et utilisée par tous les admins.", "prompt": "Switch(config)#"}, {"say": "Renomme le commutateur en <strong>SW1</strong>.", "accept": ["^\\s*host(name)?\\s+sw1\\s*$"], "cmd": "hostname SW1", "out": "", "tip": "Le prompt reflète immédiatement le nouveau nom d'hôte.", "prompt": "SW1(config)#"}, {"say": "Crée le <strong>VLAN 10</strong>.", "accept": ["^\\s*vlan\\s+10\\s*$"], "cmd": "vlan 10", "out": "", "tip": "Si le VLAN n'existe pas, IOS le crée et bascule dans le contexte (config-vlan).", "prompt": "SW1(config-vlan)#"}, {"say": "Nomme ce VLAN « TECHNICIENS ».", "accept": ["^\\s*name\\s+techniciens\\s*$"], "cmd": "name TECHNICIENS", "out": "", "tip": "Un nom explicite rend « show vlan brief » lisible pour toute l'équipe.", "prompt": "SW1(config-vlan)#"}, {"say": "Passe directement dans la configuration de l'interface <strong>Fa0/1</strong>.", "accept": ["^\\s*int(erface)?\\s+(f|fa|fastethernet)\\s*0/1\\s*$"], "cmd": "interface fa0/1", "out": "", "tip": "Pas besoin d'exit : IOS permet de passer d'un sous-mode à un autre directement.", "prompt": "SW1(config-if)#"}, {"say": "Configure le port en <strong>mode accès</strong>.", "accept": ["^\\s*sw(itchport)?\\s+mo(de)?\\s+acc(ess)?\\s*$"], "cmd": "switchport mode access", "out": "", "tip": "Un port access transporte le trafic d'un seul VLAN, sans étiquette 802.1Q.", "prompt": "SW1(config-if)#"}, {"say": "Affecte le port au <strong>VLAN 10</strong>.", "accept": ["^\\s*sw(itchport)?\\s+acc(ess)?\\s+vlan\\s+10\\s*$"], "cmd": "switchport access vlan 10", "out": "", "tip": "Fa0/1 appartient désormais au VLAN 10 : un domaine de diffusion dédié.", "prompt": "SW1(config-if)#"}, {"say": "Reviens au mode privilégié (<code>end</code> ou Ctrl+Z).", "accept": ["^\\s*end\\s*$"], "cmd": "end", "out": "%SYS-5-CONFIG_I: Configured from console by console", "tip": "« end » remonte au mode privilégié depuis n'importe quel sous-mode.", "prompt": "SW1#"}, {"say": "Vérifie la création du VLAN et l'affectation du port.", "accept": ["^\\s*sh(ow)?\\s+vlan\\s+br(ief)?\\s*$"], "cmd": "show vlan brief", "out": "VLAN Name                             Status    Ports\n---- -------------------------------- --------- ------------------------\n1    default                          active    Fa0/2, Fa0/3, Fa0/4 ...\n10   TECHNICIENS                      active    Fa0/1\n1002 fddi-default                     act/unsup\n1003 token-ring-default               act/unsup", "tip": "Fa0/1 apparaît bien sur la ligne du VLAN 10 TECHNICIENS.", "prompt": "SW1#"}, {"say": "Sauvegarde la configuration courante dans la NVRAM.", "accept": ["^\\s*copy\\s+run(ning-config)?\\s+start(up-config)?\\s*$", "^\\s*wr(ite)?(\\s+mem(ory)?)?\\s*$"], "cmd": "copy running-config startup-config", "out": "Destination filename [startup-config]?\nBuilding configuration...\n[OK]", "tip": "Sans copie vers startup-config, tout serait perdu au redémarrage. 🎉", "prompt": "SW1#"}]}, {"id": "cisco-rt", "title": "Cisco — route statique entre deux réseaux", "machine": "R1 (Cisco)", "icon": "🌐", "context": "R1 relie le réseau des PC (192.168.10.0/24) à celui des portables (192.168.20.0/24), joignable via R2 (10.0.0.2). La liaison inter-routeurs G0/1 (10.0.0.1/30) est déjà configurée ; tu es en console sur R1, mode privilégié.", "prompt0": "R1#", "steps": [{"say": "Entre en mode de configuration globale.", "accept": ["^\\s*conf(ig(ure)?)?\\s+t(erm(inal)?)?\\s*$"], "cmd": "configure terminal", "out": "Enter configuration commands, one per line.  End with CNTL/Z.", "tip": "Toujours le même chemin : mode privilégié puis « conf t ».", "prompt": "R1(config)#"}, {"say": "Entre dans la configuration de l'interface <strong>G0/0</strong> (côté réseau des PC).", "accept": ["^\\s*int(erface)?\\s+(g|gi|gig|gigabitethernet)\\s*0/0\\s*$"], "cmd": "interface g0/0", "out": "", "tip": "« int g0/0 » suffit : IOS complète les noms abrégés.", "prompt": "R1(config-if)#"}, {"say": "Attribue l'adresse <strong>192.168.10.254</strong> avec le masque <strong>255.255.255.0</strong> (passerelle des PC).", "accept": ["^\\s*ip\\s+add(r(ess)?)?\\s+192\\.168\\.10\\.254\\s+255\\.255\\.255\\.0\\s*$"], "cmd": "ip address 192.168.10.254 255.255.255.0", "out": "", "tip": "Cette adresse est la passerelle par défaut déclarée sur PC1 et PC2.", "prompt": "R1(config-if)#"}, {"say": "Active l'interface.", "accept": ["^\\s*no\\s+shut(d(o(w(n)?)?)?)?\\s*$"], "cmd": "no shutdown", "out": "%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up\n%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up", "tip": "Les interfaces d'un routeur sont désactivées par défaut : « no shutdown » est indispensable.", "prompt": "R1(config-if)#"}, {"say": "Reviens en configuration globale pour déclarer la route.", "accept": ["^\\s*exit\\s*$"], "cmd": "exit", "out": "", "tip": "« exit » remonte d'un seul niveau, contrairement à « end ».", "prompt": "R1(config)#"}, {"say": "Crée une <strong>route statique</strong> vers le réseau 192.168.20.0/24 via R2 (10.0.0.2).", "accept": ["^\\s*ip\\s+route\\s+192\\.168\\.20\\.0\\s+255\\.255\\.255\\.0\\s+10\\.0\\.0\\.2\\s*$"], "cmd": "ip route 192.168.20.0 255.255.255.0 10.0.0.2", "out": "", "tip": "Syntaxe : ip route <réseau> <masque> <prochain saut> — ici le voisin R2.", "prompt": "R1(config)#"}, {"say": "Reviens au mode privilégié.", "accept": ["^\\s*end\\s*$"], "cmd": "end", "out": "%SYS-5-CONFIG_I: Configured from console by console", "tip": "Les commandes « show » s'exécutent depuis le mode privilégié.", "prompt": "R1#"}, {"say": "Affiche la table de routage pour vérifier la route statique.", "accept": ["^\\s*sh(ow)?\\s+ip\\s+route\\s*$"], "cmd": "show ip route", "out": "Codes: L - local, C - connected, S - static, R - RIP, O - OSPF\n\nC       10.0.0.0/30 is directly connected, GigabitEthernet0/1\nL       10.0.0.1/32 is directly connected, GigabitEthernet0/1\nC       192.168.10.0/24 is directly connected, GigabitEthernet0/0\nS    192.168.20.0/24 [1/0] via 10.0.0.2", "tip": "La ligne « S 192.168.20.0/24 [1/0] via 10.0.0.2 » confirme ta route statique (S = static, [1/0] = DA 1).", "prompt": "R1#"}, {"say": "Teste la connectivité vers Portable2 (<strong>192.168.20.20</strong>) sur le réseau distant.", "accept": ["^\\s*ping\\s+192\\.168\\.20\\.20\\s*$"], "cmd": "ping 192.168.20.20", "out": "Type escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.20.20, timeout is 2 seconds:\n.!!!!\nSuccess rate is 80 percent (4/5), round-trip min/avg/max = 0/1/2 ms", "tip": "Le premier écho échoue souvent (résolution ARP) : 4/5 est un succès. 🎉", "prompt": "R1#"}]}, {"id": "fw", "title": "pfSense — console, dépannage pfctl et règles de flux", "machine": "FW-PFSENSE", "icon": "🧱", "context": "Pare-feu pfSense « routeur.icaro.eni » à 4 interfaces (tes TP01-TP03) : WAN em0 en DHCP (réseau salle 192.168.150.0/24), LANCLIENT em1 = 172.20.12.189/25, LANSERVER em2 = 172.20.12.61/26 et DMZ em3 = 172.20.12.253/26. Derrière : SRV-CD 172.20.12.21 et SRV-MBR 172.20.12.23 (LANSERVER), SRV-WEB 172.20.12.200 (DMZ).", "prompt0": "Enter an option: ", "steps": [{"say": "La console de FW-PFSENSE affiche son menu numéroté. Pour assigner les 4 cartes réseau (em0 à em3) comme au TP02, tape le numéro du menu « Assign Interfaces » : <code>1</code>", "accept": ["^\\s*1\\s*$"], "cmd": "1", "out": "Valid interfaces are:\n\nem0   00:0c:29:4a:1b:60   (up) Intel(R) PRO/1000\nem1   00:0c:29:4a:1b:6a   (up) Intel(R) PRO/1000\nem2   00:0c:29:4a:1b:74   (up) Intel(R) PRO/1000\nem3   00:0c:29:4a:1b:7e   (up) Intel(R) PRO/1000\n\nShould VLANs be set up now [y|n]? n\nEnter the WAN interface name: em0\nEnter the LAN interface name: em1\nEnter the Optional 1 interface name: em2\nEnter the Optional 2 interface name: em3\n\nWAN  -> em0    LAN  -> em1    OPT1 -> em2    OPT2 -> em3\nDo you want to proceed [y|n]? y\nWriting configuration...done.", "tip": "Comme dans ton TP02 : pas de VLAN, WAN=em0, LAN=em1, OPT1=em2 (LANSERVER), OPT2=em3 (DMZ)."}, {"say": "Retour au menu principal. Il faut adresser les interfaces : tape le numéro du menu « Set interface(s) IP address » : <code>2</code>", "accept": ["^\\s*2\\s*$"], "cmd": "2", "out": "Available interfaces:\n1 - WAN (em0 - dhcp)   2 - LAN (em1)   3 - OPT1 (em2)   4 - OPT2 (em3)\n\nEnter the number of the interface you wish to configure: 2\nConfigure IPv4 address LAN interface via DHCP? (y/n) n\n\nEnter the new LAN IPv4 address:\n>", "tip": "Le WAN reste en DHCP (réseau salle) : seules LAN, OPT1 et OPT2 sont en statique."}, {"say": "Saisis l'adresse IPv4 de l'interface LAN (LANCLIENT) : l'avant-dernière IP du sous-réseau client de tes TP01/TP02 (<strong>172.20.12.189</strong>).", "accept": ["^\\s*172\\.20\\.12\\.189\\s*$"], "cmd": "172.20.12.189", "out": "Subnet masks are entered as bit counts (CIDR) in pfSense.\ne.g. 255.255.255.128 = 25\n     255.255.255.192 = 26\n\nEnter the new LAN IPv4 subnet bit count (1 to 32):\n>", "tip": "LANCLIENT = 172.20.12.64/25 (hôtes .65 à .190) : .189 est aussi la passerelle de CLT-WIN et CLT-DEB."}, {"say": "Saisis le masque du LANCLIENT en nombre de bits (équivalent de 255.255.255.128).", "accept": ["^\\s*/?25\\s*$"], "cmd": "25", "out": "For a LAN, press <ENTER> for none:\n> <ENTER>\nDo you want to enable the DHCP server on LAN? (y/n) n\n\nThe IPv4 LAN address has been set to 172.20.12.189/25\n\nEnter the number of the interface you wish to configure: 4\nConfigure IPv4 address OPT2 interface via DHCP? (y/n) n\n\nEnter the new OPT2 IPv4 address:\n>", "tip": "Pas d'upstream gateway sur une patte LAN, et le DHCP intégré reste coupé : tu utilises le DHCP Relay vers SRV-MBR."}, {"say": "L'assistant enchaîne sur OPT2, la future DMZ. Saisis son adresse IPv4 (avant-dernière IP du réseau DMZ, cf. ton plan d'adressage TP01 : <strong>172.20.12.253</strong>).", "accept": ["^\\s*172\\.20\\.12\\.253\\s*$"], "cmd": "172.20.12.253", "out": "Enter the new OPT2 IPv4 subnet bit count: 26\n\nThe IPv4 OPT2 address has been set to 172.20.12.253/26\n\nYou can now access the webConfigurator by opening:\nhttp://172.20.12.61/\n\nPress <ENTER> to continue.", "tip": "DMZ = 172.20.12.192/26 : SRV-WEB (172.20.12.200) l'utilisera comme passerelle."}, {"say": "Dépannage : CLT-WIN ne joint plus SRV-CD, tu suspectes une règle de filtrage. Ouvre un shell root : tape le numéro du menu « Shell » : <code>8</code>", "accept": ["^\\s*8\\s*$"], "cmd": "8", "out": "[2.7.2-RELEASE][admin@routeur.icaro.eni]/root:", "tip": "L'option 8 ouvre un shell FreeBSD root — réservé au diagnostic."}, {"say": "Désactive TEMPORAIREMENT le filtrage pour vérifier si le pare-feu est en cause : <code>pfctl</code> avec l'option <strong>-d</strong> (disable).", "accept": ["^\\s*pfctl\\s+-d\\s*$"], "cmd": "pfctl -d", "out": "pf disabled", "tip": "pfctl -d coupe TOUT le filtrage : test court uniquement, à réactiver juste après."}, {"say": "Filtre coupé, teste la connectivité vers SRV-CD (contrôleur de domaine, LANSERVER) : <code>ping -c 3 172.20.12.21</code>", "accept": ["^\\s*ping(\\s+-c\\s*\\d+)?\\s+172\\.20\\.12\\.21\\s*$"], "cmd": "ping -c 3 172.20.12.21", "out": "PING 172.20.12.21 (172.20.12.21): 56 data bytes\n64 bytes from 172.20.12.21: icmp_seq=0 ttl=128 time=0.412 ms\n64 bytes from 172.20.12.21: icmp_seq=1 ttl=128 time=0.388 ms\n64 bytes from 172.20.12.21: icmp_seq=2 ttl=128 time=0.401 ms\n--- 3 packets transmitted, 3 received, 0.0% packet loss ---", "tip": "Ça répond une fois le filtre coupé : le problème vient donc bien d'une règle. TTL 128 = pile Windows."}, {"say": "Ne laisse JAMAIS un pare-feu désactivé : réactive le filtrage (<code>pfctl</code>, option <strong>-e</strong>, enable).", "accept": ["^\\s*pfctl\\s+-e\\s*$"], "cmd": "pfctl -e", "out": "pf enabled\n\n[admin@routeur.icaro.eni]/root: exit\n*** Welcome to pfSense 2.7.2-RELEASE on routeur ***\nEnter an option:", "tip": "Vérifiable avec pfctl -s info (Status: Enabled) avant de quitter le shell."}, {"say": "Place aux règles de ta matrice de flux TP01. Syntaxe simplifiée du simulateur : <code>ACTION SOURCE -> DESTINATION port N</code> (ACTION = pass/block ; zones = LAN, WAN, DMZ). Règle n°1 : <strong>autoriser le LAN à naviguer en HTTPS vers Internet</strong>.", "accept": ["^\\s*pass\\s+lan(client)?\\s*-+>\\s*wan\\s+(port\\s+)?443\\s*$"], "cmd": "pass LAN -> WAN port 443", "out": "Règle ajoutée :\nPASS   TCP   src: LANCLIENT net (172.20.12.64/25)   dst: any via WAN   port: 443\n→ webConfigurator : Firewall > Rules > LANCLIENT\nApply Changes... Filter reloaded OK.", "tip": "Règle n°1 de ta matrice TP01 : LAN CLIENT → Internet TCP 443 pour la navigation."}, {"say": "Règle n°2 (même syntaxe) : <strong>autoriser le LAN à consulter le site de SRV-WEB hébergé en DMZ</strong>, port 443.", "accept": ["^\\s*pass\\s+lan(client)?\\s*-+>\\s*dmz\\s+(port\\s+)?443\\s*$"], "cmd": "pass LAN -> DMZ port 443", "out": "Règle ajoutée :\nPASS   TCP   src: LANCLIENT net (172.20.12.64/25)   dst: LANDMZ net (172.20.12.192/26)   port: 443\nApply Changes... Filter reloaded OK.", "tip": "CLT-WIN atteint https://172.20.12.200 sans exposer le reste de la DMZ."}, {"say": "Dernière règle, protection du réseau interne (TP03) : <strong>interdire tout trafic entrant du WAN vers le LAN</strong>. Sans port indiqué, la règle porte sur tout.", "accept": ["^\\s*block\\s+wan\\s*-+>\\s*lan(client)?(\\s+(port\\s+)?any)?\\s*$"], "cmd": "block WAN -> LAN", "out": "Règle ajoutée :\nBLOCK  any   src: any via WAN   dst: LANCLIENT net (172.20.12.64/25)\nApply Changes... Filter reloaded OK.\n\nInterfaces adressées, diagnostic pfctl maîtrisé, matrice TP01/TP03 appliquée. 🎉", "tip": "Depuis Internet, seuls les flux publiés en NAT passent (RDP vers SRV-MBR, HTTP/HTTPS vers SRV-WEB)."}]}];
+  var MACH={
+    'SRV-DEB':{cls:'deb',head:'SRV-DEB — Debian 12 (bash)',prompt:'tssr@srv-deb:~$ '},
+    'DEB-S1':{cls:'deb',head:'DEB-S1 — Debian 12 (bash, root)',prompt:'root@deb-s1:~# '},
+    'SRV-WEB':{cls:'deb',head:'SRV-WEB — Debian 12 (bash, root)',prompt:'root@srv-web:~# '},
+    'CLI-ADM':{cls:'deb',head:'CLI-ADM — poste d\'administration (fred)',prompt:'fred@cli-adm:~$ '},
+    'SRV-AD':{cls:'win',head:'SRV-AD — Windows Server 2019 (PowerShell)',prompt:'PS C:\\Users\\Administrateur> '},
+    'SW1 (Cisco)':{cls:'net',head:'SW1 — Cisco IOS (console)',prompt:'Switch>'},
+    'R1 (Cisco)':{cls:'net',head:'R1 — Cisco IOS (console)',prompt:'R1#'},
+    'FW-PFSENSE':{cls:'pf',head:'FW — pfSense 2.7 (console VGA)',prompt:'Enter an option: '}
+  };
+  var FREE={
+    deb:[[/^pwd$/i,'/home/tssr'],[/^whoami$/i,'tssr'],[/^hostname$/i,'srv-deb'],[/^ls(\s.*)?$/i,'Documents  scripts  notes.txt'],[/^clear$/i,'@@CLEAR'],[/^help$/i,'Commandes libres : pwd, ls, whoami, hostname, clear — sinon suis la mission 🎯']],
+    win:[[/^hostname$/i,'SRV-AD'],[/^(cls|clear)$/i,'@@CLEAR'],[/^help$/i,'Commandes libres : hostname, cls — sinon suis la mission 🎯']],
+    net:[[/^(\?|help)$/i,'Exec commands:  enable  configure  show  ping  exit'],[/^clear$/i,'@@CLEAR']],
+    pf:[[/^(\?|help)$/i,'Tape le numéro de menu demandé, ou la saisie attendue.'],[/^clear$/i,'@@CLEAR']]
+  };
+  var K='tssr-labs-v1', store={};
+  try{store=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+  function save(){try{localStorage.setItem(K,JSON.stringify(store))}catch(e){}}
+
+  var cur=null, step=0, fails=0;
+  function $(id){return document.getElementById(id)}
+
+  function cards(){
+    var g=$('labgrid'); if(!g) return;
+    g.innerHTML=LABS.map(function(l,i){
+      var st=store[l.id]; var total=l.steps.length;
+      var done=st==='done'; var n=done?total:(st|0);
+      return '<button class="labcard" data-i="'+i+'">'
+        +'<span class="lt"><span class="ic">'+l.icon+'</span>'+l.title+'</span>'
+        +'<span class="lm">🖥 '+l.machine+'</span>'
+        +'<span class="cbar"><i style="width:'+(n/total*100)+'%"></i></span>'
+        +'<span class="lst"><span>'+total+' étapes</span><span class="'+(done?'done':'')+'">'+(done?'✓ terminé':(n>0?(n+'/'+total):'▶ commencer'))+'</span></span></button>';
+    }).join('');
+  }
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+  function tprint(txt,cls){
+    var o=$('labout');
+    o.innerHTML+=(cls?'<span class="'+cls+'">':'')+esc(txt)+(cls?'</span>':'')+"\n";
+    o.scrollTop=o.scrollHeight;
+  }
+  function setPrompt(p){$('labprompt').textContent=p}
+  function machine(){return MACH[cur.machine]||MACH['SRV-DEB']}
+  function curPrompt(){
+    if(step>0 && cur.steps[step-1].prompt) return cur.steps[step-1].prompt+' ';
+    return cur.prompt0 ? cur.prompt0 : machine().prompt;
+  }
+  function showStep(){
+    var s=cur.steps[step];
+    $('labsay').innerHTML=s.say;
+    $('labstepn').textContent='étape '+(step+1)+' / '+cur.steps.length;
+    $('labprog').textContent=step+' / '+cur.steps.length;
+    var h=$('labhint'); h.classList.remove('on'); h.innerHTML='';
+    setPrompt(curPrompt());
+    fails=0;
+  }
+  function openLab(i){
+    cur=LABS[i]; step=(store[cur.id]==='done')?0:(store[cur.id]|0);
+    if(step>=cur.steps.length) step=0;
+    $('labhome').classList.add('off'); $('labview').classList.add('on');
+    $('labdone').classList.remove('on'); $('labterm').style.display='';
+    document.querySelector('#labview .mission').style.display='';
+    $('labtitle').textContent=cur.icon+' '+cur.title;
+    $('labmch').textContent=cur.machine;
+    var m=machine();
+    $('labterm').className='term '+m.cls;
+    $('labthead').textContent=m.head;
+    $('labout').innerHTML='';
+    tprint(cur.context,'dim'); tprint('');
+    showStep();
+    setTimeout(function(){var inp=$('labin'); if(inp)inp.focus()},60);
+  }
+  function closeLab(){
+    $('labhome').classList.remove('off'); $('labview').classList.remove('on');
+    cards();
+    window.scrollTo({top:0});
+  }
+  function finish(){
+    store[cur.id]='done'; save();
+    $('labprog').textContent=cur.steps.length+' / '+cur.steps.length;
+    document.querySelector('#labview .mission').style.display='none';
+    $('labterm').style.display='none';
+    var d=$('labdone'); d.classList.add('on');
+    d.querySelector('.msg').textContent='« '+cur.title+" » bouclé. Refais-le demain de mémoire : c'est là que ça rentre.";
+  }
+  function hint(sol){
+    var s=cur.steps[step]; var h=$('labhint');
+    h.classList.add('on');
+    h.innerHTML = sol ? '👀 Solution : <code>'+esc(s.cmd)+'</code> — recopie-la à la main.'
+                      : '💡 Indice : ça commence par <code>'+esc(s.cmd.split(' ')[0])+'</code>'+(s.tip?' — '+esc(s.tip):'');
+  }
+  function submit(){
+    var inp=$('labin'); var raw=inp.value; inp.value='';
+    var v=raw.trim().replace(/\s+/g,' '); if(!v) return;
+    var m=machine(); var s=cur.steps[step];
+    tprint($('labprompt').textContent+raw);
+    if(/^indice$/i.test(v)){hint(false);return}
+    var okk=s.accept.some(function(r){try{return new RegExp(r,'i').test(v)}catch(e){return false}});
+    if(okk){
+      if(s.out) tprint(s.out);
+      tprint('✔ '+(s.tip||"C'est fait."),'ok'); tprint('');
+      step++; store[cur.id]=step; save();
+      if(step>=cur.steps.length){finish()} else {showStep()}
+      return;
+    }
+    var free=FREE[m.cls]||[];
+    for(var i=0;i<free.length;i++){
+      if(free[i][0].test(v)){
+        if(free[i][1]==='@@CLEAR'){$('labout').innerHTML=''} else tprint(free[i][1]);
+        return;
+      }
+    }
+    fails++;
+    var msg = m.cls==='deb' ? 'bash : commande inattendue ici' : m.cls==='win' ? "Le terme n'est pas reconnu ici" : m.cls==='net' ? '% Invalid input detected' : 'Entrée non reconnue';
+    tprint(msg+' — relis la mission 🎯 (ou tape « indice »)','err');
+    if(fails>=2) hint(false);
+  }
+  document.addEventListener('click',function(e){
+    var c=e.target.closest('.labcard'); if(c){openLab(+c.dataset.i);return}
+    var id=e.target.id;
+    if(id==='labback'||id==='labback2'){closeLab();return}
+    if(id==='labreset'||id==='labagain'){store[cur.id]=0;save();openLab(LABS.indexOf(cur));return}
+    if(id==='labhintbtn'){hint(false);return}
+    if(id==='labsolbtn'){hint(true);return}
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Enter' && document.activeElement && document.activeElement.id==='labin'){submit()}
+  });
+  document.addEventListener('click',function(e){
+    if(e.target.closest && e.target.closest('#labterm')){var i=$('labin'); if(i)i.focus()}
+  });
+  cards();
 })();
 </script>
 </body>
