@@ -498,6 +498,14 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
 .winmon .field.empty.hit:hover{background:#fffbe6}
 .winmon .toast{position:absolute;right:14px;bottom:52px;background:#242b3a;color:#fff;padding:10px 14px;border-radius:8px;font-size:12.5px;max-width:260px;box-shadow:0 10px 30px -8px #000}
 .winmon .ok-ic{color:#5fdd8b}
+
+.snt-wrap{overflow-x:auto;margin:8px 0 4px}
+.snt{border-collapse:collapse;width:100%;min-width:560px;text-align:center;font-variant-numeric:tabular-nums}
+.snt th,.snt td{border:1px solid var(--border-strong);padding:9px 6px;font-size:14px}
+.snt th{background:var(--surface-2);color:var(--muted);font-family:var(--mono);text-align:left;white-space:nowrap;font-size:11px;text-transform:uppercase;letter-spacing:.03em}
+.snt tr.r1 td{font-weight:700}
+.snt tr.rm td{font-family:var(--mono);font-weight:700;color:var(--accent-ink);background:var(--accent-tint)}
+.snt td.h{color:var(--muted)}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -1253,7 +1261,8 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
           </ol>
           <p style="margin-bottom:0"><em>Ex.</em> <code>172.16.20.130/26</code> → masque .192 → bloc 64 → réseau <strong>.128</strong>, broadcast <strong>.191</strong>, hôtes .129–.190 = <strong>62</strong>.</p>
         </div>
-        <div class="box trap"><div class="bt">⚠ Pièges classiques</div>
+        
+      <div class="box trap"><div class="bt">⚠ Pièges classiques</div>
           <ul>
             <li>Confondre <strong>classe</strong> (1ᵉʳ octet) et <strong>masque réel</strong> (un /26 sur du 192.x = 62 hôtes).</li>
             <li>Oublier de retirer 2 adresses (réseau + broadcast).</li>
@@ -2331,6 +2340,16 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
 
       <div class="box clair"><div class="bt">💡 L’idée en une phrase</div>
         <p>Une adresse IP = une adresse postale : une partie = le <strong>quartier</strong> (le réseau), l’autre = le <strong>numéro de maison</strong> (l’hôte). Le <strong>masque</strong>, c’est le trait qui dit où couper. « Découper en sous-réseaux » = <strong>emprunter des bits au numéro de maison</strong> pour créer plusieurs quartiers plus petits.</p></div>
+      <div class="poster">
+        <h3>📊 Le tableau à connaître (sous-réseaux ⇄ hôtes ⇄ masque)</h3>
+        <p class="psub">Vers la droite : le nombre de sous-réseaux <strong>double</strong>, le nombre d’adresses est <strong>divisé par 2</strong>.</p>
+        <div class="snt-wrap"><table class="snt">
+          <tr class="r1"><th>Sous-réseaux</th><td>1</td><td>2</td><td>4</td><td>8</td><td>16</td><td>32</td><td>64</td><td>128</td><td>256</td></tr>
+          <tr><th>Adresses (hôtes)</th><td class="h">256</td><td class="h">128</td><td class="h">64</td><td class="h">32</td><td class="h">16</td><td class="h">8</td><td class="h">4</td><td class="h">2</td><td class="h">1</td></tr>
+          <tr class="rm"><th>Masque</th><td>/24</td><td>/25</td><td>/26</td><td>/27</td><td>/28</td><td>/29</td><td>/30</td><td>/31</td><td>/32</td></tr>
+        </table></div>
+        <p class="psub" style="margin-top:8px"><strong>Hôtes utilisables = adresses − 2</strong> (on retire l’adresse réseau + le broadcast). Cas spéciaux : <strong>/31</strong> = liens point-à-point (2 hôtes), <strong>/32</strong> = une seule machine (route d’hôte).</p>
+      </div>
 
       <div class="poster masks">
         <h3>🔑 Le tableau magique (à photographier)</h3>
@@ -2369,6 +2388,32 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
         <div class="cheatwrap" style="columns:1;max-width:none"><div class="cheatblock"><h4><span class="tag" style="background:var(--info)">EX</span>Découpe 192.168.1.0/24 en 5 sous-réseaux</h4><ol style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.6"><li>Combien de bits emprunter ? <b>2ⁿ ≥ 5</b> → n=3 (2³=8 ≥ 5).</li><li>Nouveau préfixe = 24 + 3 = <b>/27</b> → masque <b>255.255.255.224</b>.</li><li>Bloc = 256 − 224 = <b>32</b>.</li><li>Sous-réseaux : .0, .32, .64, .96, .128, .160, .192, .224 (on en garde 5).</li><li>Chaque sous-réseau : 2⁵ − 2 = <b>30 hôtes</b>.</li></ol></div><div class="cheatblock"><h4><span class="tag" style="background:var(--info)">EX</span>Il faut 50 machines par sous-réseau</h4><ol style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.6"><li>Combien de bits pour les hôtes ? <b>2ⁿ − 2 ≥ 50</b> → n=6 (2⁶−2 = 62 ≥ 50).</li><li>Préfixe = 32 − 6 = <b>/26</b> → masque <b>255.255.255.192</b>.</li><li>Bloc = 256 − 192 = 64 → 62 hôtes utilisables par sous-réseau.</li></ol></div><div class="cheatblock"><h4><span class="tag" style="background:var(--info)">EX</span>172.16.20.130 /26 : réseau ? broadcast ? plage ?</h4><ol style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.6"><li>/26 → le tableau donne masque <b>192</b>, donc bloc = 256 − 192 = <b>64</b>.</li><li>Multiples de 64 : 0, 64, <b>128</b>, 192. Le plus grand ≤ 130 = 128.</li><li>→ Adresse réseau = <b>172.16.20.128</b>.</li><li>Broadcast = 128 + 64 − 1 = <b>172.16.20.191</b>.</li><li>Plage utilisable = <b>.129 → .190</b> (62 hôtes).</li></ol></div></div>
       </div>
 
+      <div class="poster">
+        <h3>🌐 Et pour les /20, /16, /23… ? (préfixe &lt; /24)</h3>
+        <p class="psub">Le tableau des blocs est TOUJOURS le même. Ce qui change, c’est l’<strong>octet où on découpe</strong>.</p>
+        <div class="box method" style="margin-top:2px"><div class="bt">🧭 La méthode en 3 réflexes</div>
+          <ol style="margin:0;padding-left:18px">
+            <li><strong>Quel octet « casse » ?</strong> /1–8 → 1ᵉʳ · /9–16 → 2ᵉ · <strong>/17–24 → 3ᵉ octet</strong> · /25–32 → 4ᵉ octet.</li>
+            <li>Dans cet octet, applique le <strong>même tableau</strong> (128 · 192 · 224 · 240 · 248 · 252 · 254) → tu obtiens le masque et le <strong>bloc = 256 − masque</strong>.</li>
+            <li>Les octets <strong>à droite</strong> de celui qui casse sont pleins (0 → 255). Raccourci hôtes : <strong>2<sup>(32 − préfixe)</sup> − 2</strong>.</li>
+          </ol>
+        </div>
+        <div class="snt-wrap"><table class="snt">
+          <tr class="rm"><th>Masque</th><td>/17</td><td>/18</td><td>/19</td><td>/20</td><td>/21</td><td>/22</td><td>/23</td><td>/24</td></tr>
+          <tr class="r1"><th>Valeur 3ᵉ octet</th><td>128</td><td>192</td><td>224</td><td>240</td><td>248</td><td>252</td><td>254</td><td>255</td></tr>
+          <tr><th>Bloc (3ᵉ octet)</th><td class="h">128</td><td class="h">64</td><td class="h">32</td><td class="h">16</td><td class="h">8</td><td class="h">4</td><td class="h">2</td><td class="h">1</td></tr>
+          <tr><th>Hôtes / réseau</th><td class="h">32 766</td><td class="h">16 382</td><td class="h">8 190</td><td class="h">4 094</td><td class="h">2 046</td><td class="h">1 022</td><td class="h">510</td><td class="h">254</td></tr>
+        </table></div>
+        <div class="cheatblock" style="border-left-color:var(--info);margin-top:12px"><h4><span class="tag" style="background:var(--info)">EX</span>Découpe 172.16.0.0/16 en /20 — combien de réseaux, combien d’hôtes ?</h4>
+          <ol style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.7">
+            <li>/20 casse dans le <strong>3ᵉ octet</strong> → masque <strong>255.255.240.0</strong>, bloc 3ᵉ octet = 256 − 240 = <strong>16</strong>.</li>
+            <li>Les /20 avancent de <strong>16 en 16</strong> dans le 3ᵉ octet : 172.16.<b>0</b>.0, 172.16.<b>16</b>.0, 172.16.<b>32</b>.0, … 172.16.<b>240</b>.0 → <strong>16 sous-réseaux</strong>.</li>
+            <li>Hôtes par /20 : bloc 16 × 256 (4ᵉ octet plein) − 2 = 4096 − 2 = <strong>4 094</strong> (ou directement 2<sup>(32−20)</sup> − 2).</li>
+            <li>1ᵉʳ réseau : <strong>172.16.0.0</strong> → broadcast <strong>172.16.15.255</strong> → plage 172.16.0.1 → 172.16.15.254.</li>
+          </ol>
+        </div>
+        <p class="psub" style="margin-top:10px">💡 Même logique pour un /9–/16 : c’est le <strong>2ᵉ octet</strong> qui casse (ex. /12 → 255.240.0.0, bloc 16 dans le 2ᵉ octet).</p>
+      </div>
       <div class="box trap"><div class="bt">⚠ Pièges classiques</div>
         <ul>
           <li>Oublier de retirer 2 adresses (réseau + broadcast) : hôtes = bloc <b>− 2</b>.</li>
