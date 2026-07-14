@@ -524,6 +524,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
         <a data-target="c2"><span class="tag">C2</span><span class="nm">Windows &amp; Active Directory</span></a>
         <a data-target="c3"><span class="tag">C3</span><span class="nm">Serveurs Linux</span><span class="rf">renforcé</span></a>
         <a data-target="c4"><span class="tag">C4</span><span class="nm">Réseau IP</span><span class="rf">renforcé</span></a>
+        <a data-target="subnet"><span class="tag">🧮</span><span class="nm">Sous-réseaux express</span></a>
       </div>
       <div class="navgrp">
         <div class="gt">Bloc 2 · Maintenir &amp; sécuriser</div>
@@ -567,7 +568,7 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
         <div class="c"><h4>Bloc 2 — CCP</h4><p><span class="big">5</span> compétences · mise en situation 1h30, entretien 45&nbsp;min</p></div>
         <div class="c"><h4>À l'épreuve</h4><p><span class="big">1</span> question en <b>anglais technique</b> dans le questionnaire → encadré « Anglais » dans chaque fiche</p></div>
       </div>
-      <div class="ctarow"><a class="memocta" data-goto="memo">🧠 <b>Mémo visuel</b><span class="go">→</span></a><a class="memocta" data-goto="cheat">🎯 <b>Antisèche imprimable</b><span class="go">→</span></a><a class="memocta" data-goto="plan">📅 <b>Plan 3 jours</b><span class="go">→</span></a><a class="memocta" data-goto="mock">🎤 <b>Examen blanc mixte</b><span class="go">→</span></a><a class="memocta" data-goto="labs">🖥️ <b>Labs pratiques</b>&nbsp;— tape les vraies commandes<span class="go">→</span></a><a class="memocta" data-goto="winsim">🖱️ <b>Windows en clic</b>&nbsp;— dépanne à la souris<span class="go">→</span></a></div>
+      <div class="ctarow"><a class="memocta" data-goto="memo">🧠 <b>Mémo visuel</b><span class="go">→</span></a><a class="memocta" data-goto="cheat">🎯 <b>Antisèche imprimable</b><span class="go">→</span></a><a class="memocta" data-goto="plan">📅 <b>Plan 3 jours</b><span class="go">→</span></a><a class="memocta" data-goto="mock">🎤 <b>Examen blanc mixte</b><span class="go">→</span></a><a class="memocta" data-goto="labs">🖥️ <b>Labs pratiques</b>&nbsp;— tape les vraies commandes<span class="go">→</span></a><a class="memocta" data-goto="winsim">🖱️ <b>Windows en clic</b>&nbsp;— dépanne à la souris<span class="go">→</span></a><a class="memocta" data-goto="subnet">🧮 <b>Sous-réseaux express</b>&nbsp;— la méthode en 2 min<span class="go">→</span></a></div>
       <div class="secttl">Bloc 1 · Exploiter l'infrastructure &amp; assurer le support</div>
       <div class="cards" id="cards1"></div>
       <div class="secttl">Bloc 2 · Maintenir, faire évoluer &amp; sécuriser</div>
@@ -2316,6 +2317,65 @@ h1,h2,h3,h4{text-wrap:balance;line-height:1.25}
           <button class="back" id="ws-again" style="margin-top:8px">↺ Refaire</button>
           <button class="back" id="ws-back2" style="margin-top:8px">← Autre scénario</button>
         </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== SUBNET ===================== -->
+    <section class="view" id="subnet" hidden>
+      <div class="comp-head">
+        <div class="crumb"><b>Réseau</b> · la compétence qui fait perdre des points si on ne l’a pas</div>
+        <div class="row"><span class="tag">🧮</span><h1>Sous-réseaux express — la méthode en 2 min</h1></div>
+        <div class="sources"><span>Objectif : savoir découper un réseau et trouver le masque <strong>de tête, sur papier</strong>. Photographie le tableau, apprends la recette, refais les 3 exemples : c’est tout.</span></div>
+      </div>
+
+      <div class="box clair"><div class="bt">💡 L’idée en une phrase</div>
+        <p>Une adresse IP = une adresse postale : une partie = le <strong>quartier</strong> (le réseau), l’autre = le <strong>numéro de maison</strong> (l’hôte). Le <strong>masque</strong>, c’est le trait qui dit où couper. « Découper en sous-réseaux » = <strong>emprunter des bits au numéro de maison</strong> pour créer plusieurs quartiers plus petits.</p></div>
+
+      <div class="poster masks">
+        <h3>🔑 Le tableau magique (à photographier)</h3>
+        <p class="psub">Carré plein = bit réseau · carré vide = bit hôte. Le seul tableau à connaître par cœur.</p>
+        <div class="mrow"><span class="cidr">/24</span><span class="bits"><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span></span><span class="mk">255.255.255.0</span><span class="hs">bloc 256 · 254 hôtes</span></div><div class="mrow"><span class="cidr">/25</span><span class="bits"><span class="bit n">1</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span></span><span class="mk">255.255.255.128</span><span class="hs">bloc 128 · 126 hôtes</span></div><div class="mrow"><span class="cidr">/26</span><span class="bits"><span class="bit n">1</span><span class="bit n">1</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span></span><span class="mk">255.255.255.192</span><span class="hs">bloc 64 · 62 hôtes</span></div><div class="mrow"><span class="cidr">/27</span><span class="bits"><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span></span><span class="mk">255.255.255.224</span><span class="hs">bloc 32 · 30 hôtes</span></div><div class="mrow"><span class="cidr">/28</span><span class="bits"><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span></span><span class="mk">255.255.255.240</span><span class="hs">bloc 16 · 14 hôtes</span></div><div class="mrow"><span class="cidr">/29</span><span class="bits"><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit h">0</span><span class="bit h">0</span><span class="bit h">0</span></span><span class="mk">255.255.255.248</span><span class="hs">bloc 8 · 6 hôtes</span></div><div class="mrow"><span class="cidr">/30</span><span class="bits"><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit n">1</span><span class="bit h">0</span><span class="bit h">0</span></span><span class="mk">255.255.255.252</span><span class="hs">bloc 4 · 2 hôtes</span></div>
+      </div>
+
+      <div class="box keep"><div class="bt">★ Les 4 astuces qui suffisent</div>
+        <ul>
+          <li><b>Bloc = 256 − masque</b> (ex. /26 → 256 − 192 = 64).</li>
+          <li><b>Hôtes = bloc − 2</b> (on retire l’adresse réseau + le broadcast).</li>
+          <li><b>Masque = 256 − bloc</b> (le chemin inverse).</li>
+          <li>Puissances de 2 à réciter : <b>1 · 2 · 4 · 8 · 16 · 32 · 64 · 128 · 256</b>.</li>
+        </ul>
+      </div>
+
+      <div class="box method"><div class="bt">🧭 La recette — « on me donne une IP + un /préfixe »</div>
+        <ol style="margin:0;padding-left:18px">
+          <li>Repère le <strong>masque</strong> du préfixe dans le tableau (ex. /27 → 224).</li>
+          <li><strong>Bloc = 256 − masque</strong> (256 − 224 = 32).</li>
+          <li><strong>Adresse réseau</strong> = le multiple du bloc <strong>juste en dessous ou égal</strong> au nombre de l’octet découpé.</li>
+          <li><strong>Broadcast</strong> = adresse réseau + bloc − 1.</li>
+          <li><strong>Plage utilisable</strong> = réseau + 1 → broadcast − 1 (soit bloc − 2 adresses).</li>
+        </ol>
+      </div>
+
+      <div class="box method"><div class="bt">🧭 La recette — « combien de bits emprunter ? »</div>
+        <ul style="margin:0;padding-left:18px">
+          <li>On te demande <strong>K sous-réseaux</strong> → trouve n tel que <strong>2ⁿ ≥ K</strong>, puis <strong>ajoute n</strong> au préfixe.</li>
+          <li>On te demande <strong>H hôtes</strong> par sous-réseau → trouve n tel que <strong>2ⁿ − 2 ≥ H</strong>, puis <strong>préfixe = 32 − n</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="poster">
+        <h3>🧪 3 exemples résolus (refais-les à blanc)</h3>
+        <div class="cheatwrap" style="columns:1;max-width:none"><div class="cheatblock"><h4><span class="tag" style="background:var(--info)">EX</span>Découpe 192.168.1.0/24 en 5 sous-réseaux</h4><ol style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.6"><li>Combien de bits emprunter ? <b>2ⁿ ≥ 5</b> → n=3 (2³=8 ≥ 5).</li><li>Nouveau préfixe = 24 + 3 = <b>/27</b> → masque <b>255.255.255.224</b>.</li><li>Bloc = 256 − 224 = <b>32</b>.</li><li>Sous-réseaux : .0, .32, .64, .96, .128, .160, .192, .224 (on en garde 5).</li><li>Chaque sous-réseau : 2⁵ − 2 = <b>30 hôtes</b>.</li></ol></div><div class="cheatblock"><h4><span class="tag" style="background:var(--info)">EX</span>Il faut 50 machines par sous-réseau</h4><ol style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.6"><li>Combien de bits pour les hôtes ? <b>2ⁿ − 2 ≥ 50</b> → n=6 (2⁶−2 = 62 ≥ 50).</li><li>Préfixe = 32 − 6 = <b>/26</b> → masque <b>255.255.255.192</b>.</li><li>Bloc = 256 − 192 = 64 → 62 hôtes utilisables par sous-réseau.</li></ol></div><div class="cheatblock"><h4><span class="tag" style="background:var(--info)">EX</span>172.16.20.130 /26 : réseau ? broadcast ? plage ?</h4><ol style="margin:0;padding-left:16px;font-size:12.5px;line-height:1.6"><li>/26 → le tableau donne masque <b>192</b>, donc bloc = 256 − 192 = <b>64</b>.</li><li>Multiples de 64 : 0, 64, <b>128</b>, 192. Le plus grand ≤ 130 = 128.</li><li>→ Adresse réseau = <b>172.16.20.128</b>.</li><li>Broadcast = 128 + 64 − 1 = <b>172.16.20.191</b>.</li><li>Plage utilisable = <b>.129 → .190</b> (62 hôtes).</li></ol></div></div>
+      </div>
+
+      <div class="box trap"><div class="bt">⚠ Pièges classiques</div>
+        <ul>
+          <li>Oublier de retirer 2 adresses (réseau + broadcast) : hôtes = bloc <b>− 2</b>.</li>
+          <li>Confondre « nombre de sous-réseaux » (2ⁿ) et « nombre d’hôtes » (2ⁿ − 2).</li>
+          <li>Chercher l’octet découpé au mauvais endroit : en /25 à /30 c’est le <b>4ᵉ octet</b> ; en /17 à /23, le <b>3ᵉ</b>.</li>
+          <li>Un <code>/26</code> reste « classe C » mais n’a que <b>62</b> hôtes, pas 254.</li>
+        </ul>
       </div>
     </section>
 
